@@ -1,0 +1,208 @@
+obj_blank_nil	true
+obj_blank_str	true
+obj_present_zero	true
+obj_presence_empty	nil
+obj_presence_val	"x"
+obj_in_true	true
+obj_in_false	false
+obj_in_str	true
+obj_presence_in	1
+obj_presence_in_nil	nil
+obj_deep_dup	"H{:a=>H{:b=>1}} H{:a=>H{:b=>2}}"
+obj_to_param	"123"
+obj_try	nil
+obj_try!	"handled"
+str_squish	"foo bar"
+str_squish_html	"<p> foo </p>"
+str_truncate	"And they found that ma..."
+str_truncate_omis	"And they found that ma..."
+str_truncate_sep	"And they found that..."
+str_truncate_bytes	"skipped"
+str_at	"h"
+str_at_range	"he"
+str_at_oob	nil
+str_from	"ello"
+str_from_neg	"llo"
+str_to	"he"
+str_to_neg	"hel"
+str_first	"h"
+str_first_n	"he"
+str_first_zero	""
+str_first_oob	"hello"
+str_last	"o"
+str_last_n	"lo"
+str_starts	true
+str_ends	true
+str_exclude	false
+str_exclude_false	false
+str_remove	"heo"
+str_remove_bang	"heo"
+str_indent	"  foo"
+str_indent_char	"··foo"
+str_indent_multi	"  foo\n  bar"
+str_indent_keep_bl	"  foo\n\n  bar"
+str_strip_heredoc	"foo\n  bar\nbaz\n"
+hash_symbolize	H{:a=>1}
+hash_stringify	H{"a"=>1}
+hash_deep_symbolize	H{:a=>H{:b=>1}}
+hash_deep_stringify	H{"a"=>H{"b"=>1}}
+hash_except	H{:b=>2}
+hash_slice	H{:a=>1}
+hash_reverse_merge	H{:a=>1,:b=>2}
+hash_with_defaults	H{:a=>1,:b=>2}
+hash_deep_merge	H{:a=>H{:b=>9,:c=>2,:d=>4}}
+hash_deep_merge_bang	H{:a=>H{:b=>1,:c=>2}}
+hash_deep_merge_block	H{:a=>H{:b=>10,:c=>2}}
+hash_deep_t_keys	H{"AB"=>1}
+hash_deep_t_values	H{:a=>H{:b=>10}}
+hash_compact_blank	H{:c=>1,:d=>"x"}
+hash_assert_valid	H{:a=>1}
+hash_assert_raise	raise:ArgumentError
+arr_in_groups_of	A[A[1,2,3],A[4,5,6],A[7,nil,nil]]
+arr_in_groups_of_pad	A[A[1,2,3],A[4,0,0]]
+arr_in_groups	A[A[1,2,3],A[4,5,nil],A[6,7,nil]]
+arr_in_groups_false	A[A[1,2],A[3,4]]
+arr_split	A[A[1,2],A[4,5]]
+arr_split_block	A[A[],A[2],A[4],A[]]
+arr_extract	"A[1,3] A[2,4]"
+arr_to_sentence	"one, two, and three"
+arr_to_sentence_2	"one and two"
+arr_to_sentence_1	"one"
+arr_second	2
+arr_third	3
+arr_fourth	4
+arr_fifth	5
+arr_second_to_last	4
+arr_third_to_last	3
+arr_wrap	A[1,2]
+arr_wrap_nil	A[]
+arr_wrap_val	A[1]
+arr_excluding	A[1,4]
+arr_including	A[1,2,3,4,5]
+enum_index_by	H{false=>3,true=>4}
+enum_index_with	H{"a"=>"A","b"=>"B"}
+enum_many	true
+enum_many_one	false
+enum_exclude	true
+enum_pluck	A[1,2]
+enum_pick	raise:TypeError
+enum_pick_none	nil
+enum_sole	raise:Enumerable::SoleItemExpectedError
+enum_sole_none	raise:Enumerable::SoleItemExpectedError
+enum_sole_many	raise:Enumerable::SoleItemExpectedError
+enum_sole_no_arg	7
+enum_in_order_of	A[2,1,5]
+enum_compact_blank	A[1,"a"]
+num_seconds	D:45 seconds
+num_minutes	D:5 minutes
+num_hours	D:6 hours
+num_days	D:2 days
+num_weeks	D:2 weeks
+num_fortnights	D:2 weeks
+num_months	D:3 months
+num_years	D:1 year
+num_duration_plus	D:2 days and 6 hours
+num_duration_sum	194400
+num_duration_eq	true
+num_duration_eq_int	true
+num_duration_ago_sec	true
+num_byte	1
+num_kilobyte	2048
+num_megabyte	3145728
+num_gigabyte	1073741824
+num_terabyte	1099511627776
+num_petabyte	1125899906842624
+num_exabyte	1152921504606846976
+num_multiple_of	true
+num_multiple_of_f	false
+num_in_millis	240000
+num_duration_from_time	T2026-03-17 12:30:45.000000000
+num_duration_sub_time	T2026-03-15 09:30:45.000000000
+time_begin_day	T2026-03-15 00:00:00.000000000
+time_end_day	T2026-03-15 23:59:59.999999999
+time_mid_day	T2026-03-15 12:00:00.000000000
+time_begin_week	T2026-03-09 00:00:00.000000000
+time_end_week	T2026-03-15 23:59:59.999999999
+time_begin_week_mon	T2026-03-09 00:00:00.000000000
+time_begin_month	T2026-03-01 00:00:00.000000000
+time_end_month	T2026-03-31 23:59:59.999999999
+time_begin_quarter	T2026-01-01 00:00:00.000000000
+time_end_quarter	T2026-03-31 23:59:59.999999999
+time_begin_year	T2026-01-01 00:00:00.000000000
+time_end_year	T2026-12-31 23:59:59.999999999
+time_all_day	R(T2026-03-15 00:00:00.000000000,T2026-03-15 23:59:59.999999999,i)
+time_all_week	R(T2026-03-09 00:00:00.000000000,T2026-03-15 23:59:59.999999999,i)
+time_all_month	R(T2026-03-01 00:00:00.000000000,T2026-03-31 23:59:59.999999999,i)
+time_ago	T2026-03-15 11:30:45.000000000
+time_since	T2026-03-15 13:30:45.000000000
+time_yesterday	T2026-03-14 12:30:45.000000000
+time_tomorrow	T2026-03-16 12:30:45.000000000
+time_prev_day	T2026-03-14 12:30:45.000000000
+time_next_week	T2026-03-16 00:00:00.000000000
+time_next_week_sat	T2026-03-21 00:00:00.000000000
+time_prev_week	T2026-03-02 00:00:00.000000000
+time_next_month	T2026-04-15 12:30:45.000000000
+time_prev_month	T2026-02-15 12:30:45.000000000
+time_next_year	T2027-03-15 12:30:45.000000000
+time_prev_year	T2025-03-15 12:30:45.000000000
+time_months_ago	T2026-01-15 12:30:45.000000000
+time_months_since	T2026-05-15 12:30:45.000000000
+time_years_ago	T2025-03-15 12:30:45.000000000
+time_next_occurring	T2026-03-16 12:30:45.000000000
+time_prev_occurring	T2026-03-09 12:30:45.000000000
+time_advance	T2026-04-17 15:30:45.000000000
+time_change	T2026-03-15 00:00:00.000000000
+time_change_nsec	T2026-03-15 12:30:45.000000000
+time_sunday	true
+time_monday	false
+time_past	true
+time_future	false
+time_beginning_of_month_clamp	T2026-02-28 00:00:00.000000000
+time_fs_db	"2026-03-15 12:30:45"
+time_fs_short	"15 Mar 12:30"
+time_fs_long	"March 15, 2026 12:30"
+time_fs_iso	"2026-03-15T12:30:45Z"
+time_fs_default	"2026-03-15 12:30:45 UTC"
+tz_name	"UTC"
+tz_in_zone	0
+tz_localtime	false
+tz_formatted_offset	"+00:00"
+tz_parse	T2026-03-15 12:30:45.000000000
+nh_currency	"$1,234,567.89"
+nh_currency_prec	"$1,234,568"
+nh_currency_unit	"1,234,567.89 €"
+nh_currency_neg	"-$1,234,567.89"
+nh_currency_sep	"$1.234.567,89"
+nh_percentage	"80.000%"
+nh_percentage_p0	"80%"
+nh_delimiter	"12,345,678"
+nh_delimiter_opt	"12 345 678"
+nh_precision	"3.142"
+nh_precision_2	"3.14"
+nh_precision_sig	"3.14"
+nh_human_size	"1.18 MB"
+nh_human_size_kb	"4.25 KB"
+nh_human_size_gb	"3.32 GB"
+nh_human	"1.23 Million"
+nh_human_million	"12.3 Million"
+nh_phone	"123-456-7890"
+nh_phone_area	"(123) 456-7890"
+tz_offset_berlin	"+01:00"
+tz_in_zone_object	"Europe/Berlin|2026-03-15 13:30:45 +01:00"
+tz_zone_now	"Asia/Tokyo"
+tz_current_zone	"Europe/Berlin"
+tz_current_no_zone	true
+tz_use_zone	"Asia/Tokyo|UTC"
+tz_use_zone_nested	"Europe/Berlin|UTC"
+tz_use_zone_raise	"UTC"
+tz_plus_seconds	"2026-03-15 13:32:15"
+tz_plus_day	"2026-03-16 21:30:45"
+tz_sub_twz	7200.0
+tz_cmp	-1
+tz_eq	true
+tz_since	"2026-03-15 14:30:45"
+tz_ago	"2026-03-15 12:30:45"
+tz_strftime	"2026-03-15 13:30:45 +01:00"
+tz_to_s	"2026-03-15 13:30:45 +0100"
+tz_fs_db	"2026-03-15 12:30:45"
+tz_fs_default	"2026-03-15 13:30:45 +0100"

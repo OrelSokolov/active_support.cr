@@ -1,0 +1,5 @@
+/lib/
+/.shards/
+/tmp/
+*.dwarf
+/active_support_cr

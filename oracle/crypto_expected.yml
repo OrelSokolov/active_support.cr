@@ -1,0 +1,44 @@
+kg_sha1_default_64	"1e43d2c997728f1997932313c49800ccf09fb805b8edc659bae998bca6a7994147d3e25c110184bd27f884dba2d0b3789c23efbc2c2af2319bc03e780e53a4ce"
+kg_sha1_iter1000_32	"04cc7764602f880a3794a66cc15e3068ce80a74255ee428fa24808f37279996e"
+kg_sha256_iter65537_16	"71e7124cdb855698807d48053e9b4452"
+ckg_cache_hit	"same"
+me_key_len	32
+me_default_cipher_parts	3
+me_iv_part_len	16
+me_tag_part_len	24
+me_str_t	NSUjkTRWc0/Ve0U/9g==--LUBjXyis6Yqb3ST3--a8BFHcaK6EVrJ+V1w69LaQ==
+me_str_r	"hello world"
+me_unicode_t	gExfVOVjeCt3QBy9UAxpBOcnGw==--Y9Jp/OML4wkVMdbO--hZ/FrC3SIPLWhZRn9StPbw==
+me_unicode_r	"привет 🌍"
+me_int_t	Dv0=--mGWjKZ7PbWcayAFy--1bJ9bvpes3V78VwGcU320Q==
+me_int_r	42
+me_float_t	ECuBXw==--2rAFsyIoBmwx59U8--wIf2fx9SYWX7YCltxRrpug==
+me_float_r	3.14
+me_nil_t	IcpKGg==--TOx7Oo8QxePIDZ3x--uH+aBi43/W7/hm8p2/Aqfw==
+me_nil_r	nil
+me_bool_t	XjDigQ==--U7uHVSv0aVSyaHTF--HPxFWIWq6d6f9AcMQM+u9Q==
+me_bool_r	true
+me_arr_t	P/4hZRfU3udqcFo=--cmEOUwL+nybPYtY9--OcUUtIvixp/DMokBVQ5CZQ==
+me_arr_r	A["a","b",3]
+me_hash_t	qjSxBzjb/PPKA+69GpOHCq/tY2t4--XpxqLW08y3GYNKsq--9/wf1Yqw8zVjTnvpa1TVbQ==
+me_hash_r	H{"a"=>1,"b"=>A["x","y"]}
+me_pur_t	JY6g2hlwyLiqjUaAYLwiv+Oh2j7o4NcNWIlaVPpKnSNNsGDziZlycx6vIDVJDCYn+vU=--G5ctKFEarIWZz7bj--tqRXmE8w2W3i/s13njkUUA==
+me_pur_r	"for login only"
+me_pur_mismatch	nil
+me_pur_missing	nil
+me_pur_unexpected	nil
+me_expired	nil
+me_garbage	raise:ActiveSupport::MessageEncryptor::InvalidMessage
+me_truncated	raise:ActiveSupport::MessageEncryptor::InvalidMessage
+me_legacy_t	gopVc5wLgNjR0/iT5pii5w==--ZK7om8YVCRgRkH5F--mFzA+td8fbyBvGX5+A1Yyg==
+me_legacy_r	"legacy payload"
+me_legacy_pur_t	oYd5E0OUr3SMQJl/m3AvAb6nCLYV7maLsVepaiY1EpLt43o4j0a8cIMOhiCmX4qQ1Z7kp/HxuDmFTVQNSmgGrCFSbL6swjCdF0mMJnHEf4g=--wx7xLOOwOtRXCtB5--zWHXvXyoWob51C1YwERRSQ==
+me_legacy_pur_r	"legacy purposed"
+me_urlsafe_t	g1vCleJ43g-JiGveTMtkAg--DDgMRMn3av1mMU1t--ytEPoKAp4a7rUQqAyB0Maw
+me_urlsafe_r	"url safe value"
+me_urlsafe_charset	"ok"
+me_null_t	qAHVrUIEU24neXopiELybw8VTEmjcofmpnYO36uE/xxIG9ciLu4TW/o5PGuALcvsTKYW--isnnNa3kcJgOGu6V--aaU0NheYdq+Z0DkU1VWeiw==
+me_null_r	"---\nsecret_key_base: abc123\nresend:\n  api_key: 'x'\n"
+mv_signed_t	eyJfcmFpbHMiOnsiZGF0YSI6InNpZ25lZCBwYXlsb2FkIiwicHVyIjoiYmxvYl9pZCJ9fQ--69f32d325de637a0ffa0ecef57e67f54d9fb550fefc18ec4d732d46de886bcac
+mv_signed_r	"signed payload"
+mv_signed_mismatch	nil

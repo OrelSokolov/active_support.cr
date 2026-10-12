@@ -1,0 +1,18 @@
+require "./core_ext"
+require "./inflector"
+require "./duration"
+require "./time_ext"
+require "./date"
+require "./number_helper"
+require "./concern"
+require "./delegate"
+require "./notifications"
+require "./cache"
+require "./i18n"
+require "./message_verifier"
+require "./message_encryptor"
+require "./key_generator"
+
+module ActiveSupport
+  VERSION = "0.1.0"
+end

@@ -1,0 +1,10 @@
+en:
+  hello: "Hello"
+  greeting: "Hello, %{name}!"
+  only_in_english: "English only"
+  inbox:
+    one: "You have %{count} message"
+    other: "You have %{count} messages"
+  nav:
+    dashboard: "Dashboard"
+    settings: "Settings"

@@ -1,0 +1,10 @@
+cache_write_read	"v1"
+cache_read_missing	nil
+cache_exist	[true, false]
+cache_delete	nil
+cache_fetch_hit	["miss5", "cached", "computed5"]
+cache_increment	[1, 2, 7, 5]
+cache_increment_init	[nil, 10]
+cache_expiry	["v", nil, false]
+cache_namespace	["nv", nil, ["ns:nk"]]
+cache_clear	[nil, nil]

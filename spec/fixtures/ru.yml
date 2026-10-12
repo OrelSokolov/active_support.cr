@@ -1,0 +1,5 @@
+ru:
+  hello: "Привет"
+  inbox:
+    one: "У вас %{count} сообщение"
+    other: "У вас %{count} сообщений"

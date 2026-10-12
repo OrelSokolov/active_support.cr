@@ -1,0 +1,8 @@
+name: active_support_cr
+version: 0.1.0
+crystal: ">= 1.21.0"
+dependencies:
+  pg:
+    github: will/crystal-pg
+  redis:
+    github: jgaskins/redis
