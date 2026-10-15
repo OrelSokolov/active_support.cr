@@ -40,34 +40,9 @@ lib LibPShm
   fun pthread_mutexattr_setpshared(attr : LibC::PthreadMutexattrT*, pshared : Int32) : Int32
   fun pthread_mutexattr_setrobust(attr : LibC::PthreadMutexattrT*, robust : Int32) : Int32
   fun pthread_mutex_consistent(mutex : LibC::PthreadMutexT*) : Int32
-
-  fun statfs(path : UInt8*, buf : Void*) : Int32
-
-  struct Statfs
-    f_type : Int64
-    pad : StaticArray(Int64, 14)
-  end
 end
 
 module ActiveSupport
-  # Проверка носителя пути: tmpfs (RAM) или нет. SQLite-нагрузка
-  # write-интенсивных fork-приложений на дисковых ФС под агрессивным
-  # чекпоинтом ловит журнальные столлы (jbd2 у ext4) в сотни мс —
-  # приложения с жёсткими латентностями требуют tmpfs и падают на
-  # старте, а не деградируют молча (fail fast, см. once-campfire-crails).
-  module Filesystem
-    TMPFS_MAGIC = 0x01021994_u64
-
-    # x86_64/aarch64 Linux `struct statfs`: f_type первый, далее 14
-    # полей Int64-размера (120 байт) — для проверки типа достаточно.
-    def self.tmpfs?(path : String) : Bool
-      buf = uninitialized LibPShm::Statfs
-      rc = LibPShm.statfs(path.check_no_null_byte.to_unsafe, pointerof(buf).as(Void*))
-      return false unless rc == 0
-      buf.f_type.to_u64! == TMPFS_MAGIC
-    end
-  end
-
   # Страница анонимной разделяемой памяти, унаследованная форками.
   # Выделяется в master до fork; дети получают тот же указатель
   # (адресное пространство наследуется целиком).
