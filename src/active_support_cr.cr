@@ -12,6 +12,7 @@ require "./i18n"
 require "./message_verifier"
 require "./message_encryptor"
 require "./key_generator"
+require "./process_shared"
 
 module ActiveSupport
   VERSION = "0.1.0"
