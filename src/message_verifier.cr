@@ -129,6 +129,54 @@ module ActiveSupport
       value.try(&.as_s?)
     end
 
+    # Подписывает Marshal-строку в legacy-конверте метаданных — wire-формат
+    # SignedGlobalID (globalid 1.4 / Rails to_sgid с дефолтным Marshal-
+    # сериализатором): {"_rails":{"message":strict_b64(marshal),"exp":…,
+    # "pur":…}}. exp/pur присутствуют всегда (как у standalone-гема).
+    def generate_marshaled(value : String, purpose : String? = nil,
+                           expires_at : Time? = nil) : String
+      expiry = expiry_string(nil, expires_at)
+      payload = String.build do |io|
+        io << "{\"_rails\":{\"message\":"
+        Base64.strict_encode(ActiveSupport::MarshalString.dump(value)).to_json(io)
+        io << ",\"exp\":" << (expiry ? expiry.to_json : "null")
+        io << ",\"pur\":" << (purpose ? purpose.to_json : "null")
+        io << "}}"
+      end
+      data = @url_safe ? Base64.urlsafe_encode(payload, padding: false)
+                       : Base64.strict_encode(payload)
+      "#{data}--#{OpenSSL::HMAC.hexdigest(@digest, @secret, data)}"
+    end
+
+    # Проверяет подпись и возвращает Marshal-строку из конверта
+    # #generate_marshaled; иначе nil.
+    def verified_marshaled(signed_message : String,
+                           purpose : String? = nil) : String?
+      hex_len = case @digest
+                in OpenSSL::Algorithm::SHA1   then 40
+                in OpenSSL::Algorithm::SHA256 then 64
+                in OpenSSL::Algorithm then 0
+                end
+      return nil unless signed_message.size > hex_len + 2
+      sep = signed_message.size - hex_len - 2
+      return nil unless signed_message[sep, 2] == "--"
+      data = signed_message[0, sep]
+      digest = signed_message[sep + 2..]
+      expected = OpenSSL::HMAC.hexdigest(@digest, @secret, data)
+      return nil unless Crypto::Subtle.constant_time_compare(expected, digest)
+
+      parsed = JSON.parse(decode(data))
+      envelope = parsed.as_h?.try(&.["_rails"]?).try(&.as_h?) || return nil
+      if exp = envelope["exp"]?.try(&.as_s?)
+        return nil if Time.utc >= parse_expiry(exp)
+      end
+      return nil unless envelope["pur"]?.try(&.as_s?) == purpose
+      legacy = envelope["message"]?.try(&.as_s?) || return nil
+      MarshalString.load(decode_strict(legacy))
+    rescue ArgumentError | Base64::Error | JSON::ParseException | IO::Error
+      nil
+    end
+
     # --- внутреннее -----------------------------------------------------
 
     private def extract_envelope(rails : Hash(String, JSON::Any),
