@@ -29,13 +29,24 @@ require "json"
 require "openssl/hmac"
 
 module ActiveSupport
+  # Готовый JSON-фрагмент для подписи payloads со вложенными структурами
+  # (variation-ключи ActiveStorage: {"format":"png","resize_to_limit":
+  # [1200,800]}) — дампится в конверт как есть, без строкового экранирования.
+  class RawJSON
+    getter json : String
+
+    def initialize(@json : String)
+    end
+  end
+
   class MessageVerifier
     # Значение, сериализуемое в JSON-конверт метаданных (payload токенов
     # Disk-сервиса — хеш со скалярами; id для signed_id — целое).
     alias MetadataScalar = String | Int32 | Int64 | Bool | Nil
     alias MetadataPayload = String | Int32 | Int64 | Bool | Nil |
                             Array(String | Symbol) |
-                            Hash(String, MetadataScalar)
+                            Hash(String, MetadataScalar) |
+                            RawJSON
 
     class InvalidSignature < Exception
     end
@@ -244,6 +255,7 @@ module ActiveSupport
           json_dump(v, io)
         end
         io << "}"
+      when RawJSON then io << value.json
       end
     end
   end
