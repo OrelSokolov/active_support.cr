@@ -40,6 +40,19 @@ hash.deep_merge(other)
 Time.use_zone("Europe/Berlin") { Time.current }
 ```
 
+### Ruby-compat aliases
+
+Ruby's `attr_*` macros are aliased for Rails migrants (delegating to the
+idiomatic Crystal `getter`/`setter`/`property`):
+
+```crystal
+class Entry
+  attr_reader :body, :content_type        # Ruby symbol style
+  attr_accessor hits : Int32 = 0          # typed declarations work too
+end
+```
+
+
 ## Feature comparison vs activesupport 8.1.4
 
 ### Core extensions
@@ -71,6 +84,7 @@ Time.use_zone("Europe/Berlin") { Time.current }
 | Feature | Original | Port | Status |
 |---|---|---|---|
 | `ActiveSupport::Concern` (`included do` / `class_methods do`) | ✅ | Crystal `included` hook + macros | ✅ |
+| `attr_reader / attr_writer / attr_accessor` | ✅ | Aliases over `getter/setter/property`; Ruby symbol args (`:foo`) and typed declarations accepted | ✅ |
 | `delegate :x, to: :y, prefix:, allow_nil:` / `delegate_missing_to` | ✅ | Macros | ✅ |
 | `mattr_accessor/cattr_accessor, class_attribute, thread_mattr_*` | ✅ | Macros over `@@`/fiber-locals | ✅ |
 | `ActiveSupport::Notifications` (`instrument/subscribe/publish`) | ✅ | Same | ✅ |
@@ -105,7 +119,7 @@ Time.use_zone("Europe/Berlin") { Time.current }
 crystal spec
 ```
 
-Suite: 319/319. Oracle specs (`oracle/cases.rb` → `expected.yml`,
+Suite: 323/323. Oracle specs (`oracle/cases.rb` → `expected.yml`,
 including 19 `tz_*` timezone cases) are recorded with the real
 activesupport 8.1.4 and replayed unchanged; cache stores are additionally
 verified against a real redis-server (`oracle/cache_stores_cases.rb`)
