@@ -42,8 +42,10 @@ Time.use_zone("Europe/Berlin") { Time.current }
 
 ### Ruby-compat aliases
 
-Ruby's `attr_*` macros are aliased for Rails migrants (delegating to the
-idiomatic Crystal `getter`/`setter`/`property`):
+Ruby's `attr_*` macros live in the zero-dependency
+[attr_reader.cr](https://github.com/OrelSokolov/attr_reader.cr) shard and are
+re-exported here (delegating to the idiomatic Crystal
+`getter`/`setter`/`property`):
 
 ```crystal
 class Entry
@@ -84,7 +86,7 @@ end
 | Feature | Original | Port | Status |
 |---|---|---|---|
 | `ActiveSupport::Concern` (`included do` / `class_methods do`) | ✅ | Crystal `included` hook + macros | ✅ |
-| `attr_reader / attr_writer / attr_accessor` | ✅ | Aliases over `getter/setter/property`; Ruby symbol args (`:foo`) and typed declarations accepted | ✅ |
+| `attr_reader / attr_writer / attr_accessor` | ✅ | Re-exported from the [attr_reader.cr](https://github.com/OrelSokolov/attr_reader.cr) shard; Ruby symbol args (`:foo`) and typed declarations accepted | ✅ |
 | `delegate :x, to: :y, prefix:, allow_nil:` / `delegate_missing_to` | ✅ | Macros | ✅ |
 | `mattr_accessor/cattr_accessor, class_attribute, thread_mattr_*` | ✅ | Macros over `@@`/fiber-locals | ✅ |
 | `ActiveSupport::Notifications` (`instrument/subscribe/publish`) | ✅ | Same | ✅ |

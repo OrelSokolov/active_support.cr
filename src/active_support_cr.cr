@@ -1,5 +1,5 @@
 require "./core_ext"
-require "./attr_aliases"
+require "attr_reader_cr"
 require "./inflector"
 require "./duration"
 require "./time_ext"

@@ -1,7 +1,10 @@
 name: active_support_cr
-version: 0.1.5
+version: 0.1.6
 crystal: ">= 1.21.0"
 dependencies:
+  attr_reader_cr:
+    github: OrelSokolov/attr_reader.cr
+    version: ~> 0.1.0
   pg:
     github: will/crystal-pg
   redis:
