@@ -1,5 +1,5 @@
 name: active_support_cr
-version: 0.1.6
+version: 0.1.7
 crystal: ">= 1.21.0"
 dependencies:
   attr_reader_cr:

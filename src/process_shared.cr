@@ -49,7 +49,7 @@ module ActiveSupport
   class SharedPage
     DEFAULT_SIZE = 4096
 
-    getter size : Int32
+    attr_reader size : Int32
     @ptr : Pointer(UInt8)
 
     def initialize(@size : Int32 = DEFAULT_SIZE)

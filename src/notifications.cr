@@ -8,11 +8,11 @@
 module ActiveSupport
   module Notifications
     class Event
-      getter name : String
-      getter payload : Hash(String, ActiveSupport::Any)
-      getter time : Time
-      getter end : Time?
-      property transaction_id : String?
+      attr_reader name : String
+      attr_reader payload : Hash(String, ActiveSupport::Any)
+      attr_reader time : Time
+      attr_reader end : Time?
+      attr_accessor transaction_id : String?
 
       def initialize(@name : String, payload : Hash(String, ActiveSupport::Any) = {} of String => ActiveSupport::Any)
         @payload = payload

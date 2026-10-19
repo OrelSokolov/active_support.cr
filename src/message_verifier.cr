@@ -33,7 +33,7 @@ module ActiveSupport
   # (variation-ключи ActiveStorage: {"format":"png","resize_to_limit":
   # [1200,800]}) — дампится в конверт как есть, без строкового экранирования.
   class RawJSON
-    getter json : String
+    attr_reader json : String
 
     def initialize(@json : String)
     end

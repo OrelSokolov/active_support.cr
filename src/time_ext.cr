@@ -4,8 +4,8 @@
 
 module ActiveSupport
   class TimeZone
-    getter name : String
-    getter location : Time::Location
+    attr_reader name : String
+    attr_reader location : Time::Location
 
     def initialize(@name : String)
       @location = Time::Location.load(@name)
@@ -34,7 +34,7 @@ module ActiveSupport
   end
 
   struct TimeWithZone
-    getter zone : TimeZone
+    attr_reader zone : TimeZone
 
     def initialize(@time : Time, @zone : TimeZone)
     end

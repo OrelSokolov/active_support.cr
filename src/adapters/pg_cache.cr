@@ -9,7 +9,7 @@ require "pg"
 module ActiveSupport
   module Cache
     class SolidCacheStore < Store
-      getter db : DB::Database
+      attr_reader db : DB::Database
 
       def initialize(@db : DB::Database)
         ensure_schema

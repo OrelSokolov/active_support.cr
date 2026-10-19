@@ -21,8 +21,8 @@ module ActiveSupport
       years:   31_536_000_i64,
     }
 
-    getter parts : Array(Tuple(Symbol, Int64))
-    getter value : Int64
+    attr_reader parts : Array(Tuple(Symbol, Int64))
+    attr_reader value : Int64
 
     def initialize(parts : Array(Tuple(Symbol, Int64)))
       @parts = Duration.normalize(parts)

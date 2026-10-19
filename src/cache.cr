@@ -7,9 +7,9 @@
 module ActiveSupport
   module Cache
     class Entry
-      getter value : String
-      getter expires_at : Time?
-      getter created_at : Time
+      attr_reader value : String
+      attr_reader expires_at : Time?
+      attr_reader created_at : Time
 
       def initialize(@value : String, expires_in : Time::Span? = nil, *, expires_at : Time? = nil)
         @created_at = Time.local
@@ -111,7 +111,7 @@ module ActiveSupport
     end
 
     class FileStore < Store
-      getter directory : String
+      attr_reader directory : String
 
       # Sub-second precision: expiry spans below 1s must survive the
       # roundtrip (ISO_8601_DATE_TIME truncates to whole seconds).

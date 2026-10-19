@@ -3,9 +3,9 @@
 struct Date
   include Comparable(self)
 
-  getter year : Int32
-  getter month : Int32
-  getter day : Int32
+  attr_reader year : Int32
+  attr_reader month : Int32
+  attr_reader day : Int32
 
   def initialize(@year : Int32, @month : Int32, @day : Int32)
   end
