@@ -1,4 +1,5 @@
 require "./core_ext"
+require "./attr_aliases"
 require "./inflector"
 require "./duration"
 require "./time_ext"
