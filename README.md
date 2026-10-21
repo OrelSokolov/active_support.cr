@@ -97,7 +97,7 @@ end
 | `NumberHelper` family | ✅ | Same (locale data) | ✅ |
 | `MessageVerifier` / `MessageEncryptor` (signed/encrypted cookies) | ✅ | SHA1/SHA256 digests, KeyGenerator-derived keys, legacy `{"_rails":...}` envelope read/write (wire format of actionpack 8.1 cookies) | ✅ |
 | `SecureRandom.base58/base36`, `Digest::UUID` | ✅ | Same | ✅ |
-| `CurrentAttributes` | ✅ | Fiber-locals | ✅ |
+| `ActiveSupport::CurrentAttributes` | ✅ | `class Current < AS::CurrentAttributes`, typed `attribute user: User?` (nilable), class-level accessors, `reset`/`reset_all`; reset wired into request dispatch by railties.cr | 🔶 (process-global class vars, not fiber-isolated; no instance/`set{}`/callbacks API) |
 | `TaggedLogging`, `Deprecation`, `BacktraceCleaner` | ✅ | Same | ✅ |
 | `HashWithIndifferentAccess` | ✅ | Approximation used by params: Symbol\|String keys | 🔶 |
 
