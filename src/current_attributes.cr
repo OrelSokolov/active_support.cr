@@ -27,8 +27,13 @@
 module ActiveSupport
   # GC-traceable cell for one CurrentAttributes value (see
   # CurrentAttributes): @value is a typed ivar of a heap class, so the
-  # collector keeps the stored object alive through the store.
-  class CurrentBox(T)
+  # collector keeps the stored object alive through the store. Base
+  # class keeps the store's value type non-generic (uninstantiated
+  # generics can't appear in unions).
+  abstract class CurrentBoxBase
+  end
+
+  class CurrentBox(T) < CurrentBoxBase
     property value : T
 
     def initialize(@value : T)
@@ -66,8 +71,9 @@ module ActiveSupport
         {% ca_key = "#{key.id}.#{name.id}" %}
 
         def self.{{name.id}} : {{ type }}
-          if (box = Fiber.current.__current_attributes_store?[{{ ca_key }}]?)
-            box.as(ActiveSupport::CurrentBox({{ type }})).value
+          if (store = Fiber.current.__current_attributes_store?) &&
+             store.has_key?({{ ca_key }})
+            store[{{ ca_key }}].as(ActiveSupport::CurrentBox({{ type }})).value
           else
             nil.as({{ type }})
           end
@@ -96,13 +102,13 @@ end
 class Fiber
   # Per-fiber CurrentAttributes storage: "<Class>.<attr>" → boxed value.
   # Not a public API — belongs to ActiveSupport::CurrentAttributes.
-  @__current_attributes_store : Hash(String, ActiveSupport::CurrentBox)?
+  @__current_attributes_store : Hash(String, ActiveSupport::CurrentBoxBase)?
 
-  def __current_attributes_store : Hash(String, ActiveSupport::CurrentBox)
-    @__current_attributes_store ||= {} of String => ActiveSupport::CurrentBox
+  def __current_attributes_store : Hash(String, ActiveSupport::CurrentBoxBase)
+    @__current_attributes_store ||= {} of String => ActiveSupport::CurrentBoxBase
   end
 
-  def __current_attributes_store? : Hash(String, ActiveSupport::CurrentBox)?
+  def __current_attributes_store? : Hash(String, ActiveSupport::CurrentBoxBase)?
     @__current_attributes_store
   end
 end
