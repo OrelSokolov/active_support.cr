@@ -16,6 +16,7 @@ require "./marshal_string"
 require "./message_encryptor"
 require "./key_generator"
 require "./process_shared"
+require "./secure_random"
 
 module ActiveSupport
   VERSION = "0.1.0"
