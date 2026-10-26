@@ -69,7 +69,8 @@ end
 | `Array`: `in_groups_of, in_groups, split, extract!, to_sentence, second..fifth, second_to_last, wrap, excluding, including` | ✅ | Same | ✅ |
 | `Enumerable`: `index_by, index_with, many?, exclude?, pluck, pick, sole, in_order_of, compact_blank` | ✅ | Same | ✅ |
 | `Int/Numeric`: `seconds..years, bytes..exabytes, multiple_of?, in_milliseconds` (Duration mechanics) | ✅ | Duration is a fixed `Time::Span` (see deviations) | 🔶 |
-| `Date/Time` math: `beginning/end_of_*`, `all_day/...`, `ago/since`, `advance`, `change`, `yesterday/tomorrow`, `next_week/prev_*`, `months_ago/...`, `next_occurring`, `past?/future?/today?`, `to_fs(:db/:short/:long/:iso8601)` | ✅ | Same | ✅ |
+| `Date/Time` math: `beginning/end_of_*`, `all_day/...`, `ago/since`, `advance`, `change`, `yesterday/tomorrow`, `next_week/prev_*`, `months_ago/...`, `next_occurring`, `past?/future?/today?`, `to_fs(:db/:short/:long/:iso8601)`, `Time#to_f`, `ActiveSupport::TimeFormats.register` (resolved by `Time`/`TimeWithZone` `to_fs`, shadows builtins) | ✅ | Same (`to_f` → `to_unix_f`; registered procs return `String`, take `Time`) | ✅ |
+| `String#inquiry` / `ActiveSupport::StringInquirer` | ✅ | Wrapper struct (Crystal `String` can't be subclassed); `name?` predicates via compile-time `method_missing` | ✅ |
 | `constantize` / `String#constantize` | ✅ | Not portable — dependent shards use compile-time registries | ❌ (equivalent: compile-time class registry) |
 
 ### Time zones

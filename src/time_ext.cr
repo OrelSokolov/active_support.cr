@@ -142,11 +142,27 @@ module ActiveSupport
     end
 
     def to_fs(format : Symbol = :default) : String
-      case format
-      when :db      then utc.to_fs(:db)
-      when :default then to_s
-      else               time.to_fs(format)
+      if formatter = ActiveSupport::TimeFormats.lookup(format)
+        apply_formatter(formatter)
+      else
+        case format
+        when :db      then utc.to_fs(:db)
+        when :default then to_s
+        else               time.to_fs(format)
+        end
       end
+    end
+
+    # Registered formatter: strftime on the wall-clock time, proc on the
+    # UTC instant (Rails passes the TimeWithZone itself; the instant is
+    # what time-derived lambdas like `to_f * 1000` need).
+    private def apply_formatter(formatter : ActiveSupport::TimeFormats::Formatter) : String
+      formatter.is_a?(String) ? time.to_s(formatter) : formatter.call(utc)
+    end
+
+    # Epoch seconds as Float, like Rails TimeWithZone#to_f.
+    def to_f : Float64
+      utc.to_f
     end
 
     def to_fs(format : String) : String
@@ -425,8 +441,13 @@ struct Time
     at_beginning_of_day == Time.local.at_beginning_of_day
   end
 
-  # to_fs: :db/:short/:long/:iso8601/:number or strftime-ish String.
+  # to_fs: :db/:short/:long/:iso8601/:number, formats registered in
+  # ActiveSupport::TimeFormats, or strftime-ish String.
   def to_fs(format : Symbol = :default) : String
+    if formatter = ActiveSupport::TimeFormats.lookup(format)
+      return formatter.is_a?(String) ? to_s(formatter) : formatter.call(self)
+    end
+
     case format
     when :db      then sprintf("%04d-%02d-%02d %02d:%02d:%02d", year, month, day, hour, minute, second)
     when :number  then sprintf("%04d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second)
@@ -440,6 +461,11 @@ struct Time
 
   def to_fs(format : String) : String
     to_s(format)
+  end
+
+  # Epoch seconds as Float, like Rails Time#to_f.
+  def to_f : Float64
+    to_unix_f
   end
 
   def to_formatted_s(format : Symbol = :default) : String
