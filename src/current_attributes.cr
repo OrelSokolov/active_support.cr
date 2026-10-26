@@ -84,12 +84,18 @@ module ActiveSupport
             ActiveSupport::CurrentBox({{ type }}).new(value)
           value
         end
+
+        # Bang variant (Ruby-style "raise instead of nil"): the non-nil
+        # part of the attribute's type, inferred by the compiler.
+        def self.{{name.id}}!
+          {{ name.id }}.not_nil!
+        end
       {% end %}
 
       def self.reset : Nil
         if (store = Fiber.current.__current_attributes_store?)
           {% for triple in ActiveSupport::CurrentAttributes::ATTRS.select { |t| t[0] == @type.stringify } %}
-            {% ca_key = "#{@type.stringify}.#{triple[1].stringify}" %}
+            {% ca_key = "#{@type.id}.#{triple[1].id}" %}
             store.delete({{ ca_key }})
           {% end %}
         end
